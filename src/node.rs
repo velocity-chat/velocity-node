@@ -1,4 +1,10 @@
-use std::{fmt::write, fs::read, io::{Read, Write}, net::{TcpListener, ToSocketAddrs}, sync::{Arc, Mutex, MutexGuard}};
+use std::{
+    fmt::write,
+    fs::read,
+    io::{Read, Write},
+    net::{TcpListener, ToSocketAddrs},
+    sync::{Arc, Mutex, MutexGuard},
+};
 
 use crate::connection::Connection;
 // pub type Connection = (TcpStream, SocketAddr);
@@ -49,14 +55,13 @@ pub fn handle_connection(
     con: Arc<Connection>,
 ) -> Result<(), Box<dyn std::error::Error>> {
     println!("Handling connection");
-    
-    loop {
-        // let mut buffer = Vec::new();
-        let mut stream = &con.stream;
-        stream.write(b"Jello")?;
-        // stream.read(&mut buffer)?;
-        // stream.write(&buffer)?;
-        // println!("Buffer read is {:#?}", buffer);
-    }
+    let mut stream = &con.stream;
+    stream.write(b"Welcome to the network")?;
+    // loop {
+    let mut buffer = Vec::with_capacity(4);
+    stream.read(&mut buffer)?;
+    stream.write(&buffer)?;
+    print!("Buffer read is {:#?}\r", buffer);
+    // }
     Ok(())
 }

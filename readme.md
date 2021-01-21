@@ -8,4 +8,4 @@ Network packets are encoded using [Servo's bincode](https://crates.io/crates/bin
 
 Im not using any async libraries because I don't like them.
 
-
+TOOD: this
