@@ -81,8 +81,10 @@ pub fn handle_connection(
                 handle_packet(packet, apeers.clone(), con.clone());
             }
             Err(err) => {
+                
                 println!("Malformed packet.");
                 eprintln!("{}", err);
+                break Err(err);
                 // Err(err)
             }
         }
